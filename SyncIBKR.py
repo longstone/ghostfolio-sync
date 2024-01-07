@@ -197,7 +197,6 @@ class SyncIBKR:
             logger.info("No cash set, no cash retrieved")
             return False
         account = {
-            "accountType": "SECURITIES",
             "balance": round(float(cash), 2),
             "id": account_id,
             "currency": self.ghost_currency,
