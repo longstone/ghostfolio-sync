@@ -21,7 +21,11 @@ handle_migration(){
   if cmp -s "$VERSION_ACTUAL" "$VERSION_LAST_RUN"; then
       echo "The version has not changed. Nothing to do..."
   else
-      echo "The version has changed to $VERSION_ACTUAL from $VERSION_LAST_RUN - deleting cache"
+      echo "The version has changed to"
+      cat "$VERSION_ACTUAL"
+      echo "from "
+      cat "$VERSION_LAST_RUN"
+      echo "- deleting cache"
       cp "$VERSION_ACTUAL" "$VERSION_LAST_RUN" -v
       rm -rfv .cache
   fi
