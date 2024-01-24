@@ -50,8 +50,10 @@ class IbkrApi:
         for flexStatement in query.FlexStatements:
             for trade in flexStatement.Trades:
                 if trade.assetCategory is not trade.assetCategory.STOCK:
-                    logger.debug(f"ignore {trade.assetCategory}, {trade.symbol}: {trade}")
-                    existing_skips = skipped_categories_counter.get(trade.assetCategory, 0)
+                    logger.debug(
+                        f"ignore {trade.assetCategory}, {trade.symbol}: {trade}")
+                    existing_skips = skipped_categories_counter.get(trade.assetCategory,
+                                                                    0)
                     skipped_categories_counter[trade.assetCategory] = existing_skips + 1
                     continue
 
@@ -75,7 +77,9 @@ class IbkrApi:
         for flex_statements in query.FlexStatements:
             all_cash_transactions.extend(flex_statements.CashTransactions)
         transaction_summaries = filter(
-            lambda x: x.levelOfDetail == 'SUMMARY' and (x.type in cash_action_types),
+            lambda x: x.levelOfDetail == 'SUMMARY'
+                      and (x.type in cash_action_types)
+                      and ('EXPIRE DIVIDEND RIGHT' not in x.description),
             all_cash_transactions
         )
         return sorted(transaction_summaries, key=lambda t: t.reportDate)
