@@ -102,7 +102,7 @@ class SyncIBKR:
 
         diff: list[GhostfolioImportActivity] = get_diff(existing_activities, activities)
         if envConf.is_debug_files_enabled():
-            debug_file_folder = envConf.debug_file_location()
+            debug_file_folder = envConf.file_write_location()
             logger.warn("Flag WRITE_DEBUG_FILES is set, writing files")
             with open(f"{debug_file_folder}activities_from_gf.json", 'w') as outfile:
                 logger.warn("WRITE_DEBUG_FILES: writing existing_activities")

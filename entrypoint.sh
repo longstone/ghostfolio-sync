@@ -2,7 +2,7 @@
 
 HEALTH_FILE="$HOME/ghost.health"
 VERSION_ACTUAL="$HOME/.VERSION"
-VERSION_LAST_RUN="$HOME/ghost.version"
+VERSION_LAST_RUN="$FILE_WRITE_LOCATION/.ghost.version"
 
 single_run(){
     echo "Crontab Not Present running one time now"
@@ -27,7 +27,7 @@ handle_migration(){
       cat "$VERSION_LAST_RUN"
       echo "- deleting cache"
       cp "$VERSION_ACTUAL" "$VERSION_LAST_RUN" -v
-      rm -rfv .cache
+      rm -rfv "$FILE_WRITE_LOCATION/.cache"
   fi
 }
 

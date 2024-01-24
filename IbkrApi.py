@@ -12,8 +12,8 @@ IbkrConfig = namedtuple('IbkrConfig',
                         'token query_id')
 
 logger = LoggerFactory.logger
-cache = Cache(directory='.cache/ibkr-api')
 envConf = EnvironmentConfiguration()
+cache = Cache(directory=envConf.file_write_location()+'.cache/ibkr-api')
 
 
 class IbkrApi:
@@ -91,7 +91,7 @@ class IbkrApi:
 
     def __query_to_file(self, response):
         timestamp = f"{datetime.now().strftime('%Y-%m-%d_%H:%M:%S')}"
-        folder = envConf.debug_file_location()
+        folder = envConf.file_write_location()
         filename = f"{folder}{timestamp}-ib_flex_query-{self.ibkr_query}.xml"
         logger.warning(f"writing query to {filename}")
         with open(filename, 'wb') as outfile:

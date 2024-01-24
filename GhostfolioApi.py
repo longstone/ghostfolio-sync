@@ -7,6 +7,7 @@ import sys
 from diskcache import Cache
 
 import LoggerFactory
+from EnvironmentConfiguration import EnvironmentConfiguration
 
 SymbolLookupOverride = namedtuple('SymbolLookupOverride',
                                   'exists data_source symbol currency')
@@ -20,7 +21,7 @@ GhostfolioImportActivity = namedtuple('GhostfolioImportActivity',
                                       'symbol, type, unitPrice, accountId, comment')
 
 DATA_SOURCE_YAHOO = "YAHOO"
-cache = Cache(directory='.cache/ghostfolio-api')
+cache = Cache(directory=EnvironmentConfiguration().file_write_location()+'.cache/ghostfolio-api')
 logger = LoggerFactory.logger
 
 
