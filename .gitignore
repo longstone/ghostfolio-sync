@@ -131,3 +131,7 @@ venv
 .idea
 .DS_Store
 /out/
+*-ib_flex_query-*.xml
+activities_diff.json
+activities_from_gf.json
+activities_from_ib.json
