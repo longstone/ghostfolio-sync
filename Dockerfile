@@ -50,6 +50,8 @@ COPY --chown=$USER:$GROUP ./entrypoint.sh $HOME/entrypoint.sh
 COPY --chown=$USER:$GROUP ./run.sh /$HOME/run.sh
 COPY --chown=$USER:$GROUP requirements.txt .
 COPY --chown=$USER:$GROUP  *.py $HOME/
+COPY --chown=$USER:$GROUP  .VERSION $HOME/
+
 ENV PYTHONUNBUFFERED=1
 ENV VIRTUAL_ENV=$HOME/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
