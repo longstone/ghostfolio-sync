@@ -21,7 +21,8 @@ GhostfolioImportActivity = namedtuple('GhostfolioImportActivity',
                                       'symbol, type, unitPrice, accountId, comment')
 
 DATA_SOURCE_YAHOO = "YAHOO"
-cache = Cache(directory=EnvironmentConfiguration().file_write_location()+'.cache/ghostfolio-api')
+cache = Cache(
+    directory=EnvironmentConfiguration().file_write_location() + '.cache/ghostfolio-api')
 logger = LoggerFactory.logger
 
 
@@ -150,7 +151,6 @@ class GhostfolioApi:
             return import_activities_mapped
         else:
             return []
-
 
     def import_activities(self, bulk: list[GhostfolioImportActivity]):
         chunks = self.__generate_chunks(bulk, 10)
@@ -310,6 +310,12 @@ class GhostfolioApi:
         if response.status_code == 200:
             return response.json()['accounts']
         else:
+            if response.status_code == 401:
+                logger.error("Token (GHOST_TOKEN) Expired! "
+                             "see "
+                             "https://github.com/longstone/ghostfolio-sync?tab=readme"
+                             "-ov-file#ghostfolio"
+                             "renew token")
             raise Exception(response)
 
     def get_ticker(self, isin, symbol) -> GhostfolioTicker:
