@@ -48,6 +48,7 @@ WORKDIR $HOME
 
 COPY --chown=$USER:$GROUP ./entrypoint.sh $HOME/entrypoint.sh
 COPY --chown=$USER:$GROUP ./run.sh /$HOME/run.sh
+COPY --chown=$USER:$GROUP ./healthcheck.sh.sh /$HOME/healthcheck.sh
 COPY --chown=$USER:$GROUP requirements.txt .
 COPY --chown=$USER:$GROUP  *.py $HOME/
 COPY --chown=$USER:$GROUP  .VERSION $HOME/
