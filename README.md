@@ -34,7 +34,7 @@ Default runs as with the following config (non root):
 -  ARG UID=1001
 -  ARG GID=1001
 
-Runs with with virtual env
+Runs with virtual env
 
 If you need debug files (set WRITE_DEBUG_FILES=TRUE), you can map the default folder /usr/app/src/out
 
