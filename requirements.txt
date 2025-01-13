@@ -1,4 +1,4 @@
-ibflex @ git+https://github.com/longstone/ibflex/@1d987ef80472844495285426dae7a9ea1e30a18a
+ibflex @ git+https://github.com/csingley/ibflex.git@master
 requests==2.32.0
 colorlog==6.8.0
 diskcache==5.6.3
